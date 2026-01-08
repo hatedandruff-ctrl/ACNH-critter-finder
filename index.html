@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ACNH Catch Assistant</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<nav>
+  <button id="fishBtn">Fish</button>
+  <button id="bugsBtn">Bugs</button>
+  <button id="seaCreaturesBtn">Sea Creatures</button>
+  <button id="critterpediaBtn">Critterpedia</button>
+</nav>
+
+<!-- SHARED ISLAND INPUTS -->
+<section id="islandInputs">
+  <h2>Island Conditions</h2>
+
+  <label>
+    Month:
+    <select id="monthInput">
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+  </label>
+
+  <label>
+    Hour:
+    <input type="number" id="hourInput" min="0" max="23" value="12" />
+  </label>
+
+  <label>
+    Hemisphere:
+    <select id="hemisphereInput">
+      <option value="north">Northern</option>
+      <option value="south">Southern</option>
+    </select>
+  </label>
+
+  <label>
+    Weather:
+    <select id="weatherInput">
+      <option value="clear">Clear</option>
+      <option value="rain">Rain</option>
+      <option value="snow">Snow</option>
+    </select>
+  </label>
+</section>
+
+<!-- FISH -->
+<section id="fishSection" class="mode-section active">
+  <h2>Fish Catch Assistant</h2>
+
+  <label>
+    Fish Caught:
+    <input type="number" id="fishCountInput" min="0" value="0" />
+  </label>
+
+  <button id="applyFishFiltersBtn">Apply</button>
+
+  <div id="fishResults"></div>
+</section>
+
+<!-- BUGS -->
+<section id="bugsSection" class="mode-section">
+  <h2>Bug Catch Assistant</h2>
+
+  <label>
+    Bugs Caught:
+    <input type="number" id="bugCountInput" min="0" value="0" />
+  </label>
+
+  <button id="applyBugFiltersBtn">Apply</button>
+
+  <div id="bugResults"></div>
+</section>
+
+<!-- SEA CREATURES -->
+<section id="seaCreaturesSection" class="mode-section">
+  <h2>Sea Creature Catch Assistant</h2>
+
+  <label>
+    Sea Creatures Caught:
+    <input type="number" id="seaCreatureCountInput" min="0" value="0" />
+  </label>
+
+  <button id="applySeaCreatureFiltersBtn">Apply</button>
+
+  <div id="seaCreatureResults"></div>
+</section>
+
+<!-- CRITTERPEDIA -->
+<section id="critterpediaSection" class="mode-section">
+  <h2>Critterpedia</h2>
+  <p>Hover over a critter to see spawn details</p>
+  <p>To change between northern and southern hemisphere, change the hemisphere selector on any of the assistants</p>
+  <div id="critterpediaGrid"></div>
+</section>
+
+<script src="creatures.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
