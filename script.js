@@ -185,24 +185,28 @@ function filterCreatures(list, filters, ignoreWeather) {
  * 5. TABLE RENDERING
  *************************************************/
 
-function renderTable(creatures, containerId, extraColumns) {
+function renderTable(creatures, containerId, extraColumns, includeLocation = true) {
   const container = document.getElementById(containerId);
   const caughtMap = getCaughtMap();
   container.innerHTML = "";
 
   const table = document.createElement("table");
 
+  // build header
   const header = document.createElement("tr");
-  ["Icon", "Name", "Location", ...extraColumns, "Caught"].forEach(h => {
+  const baseColumns = ["Icon", "Name"];
+  if (includeLocation) baseColumns.push("Location"); // only add if needed
+  const allColumns = [...baseColumns, ...extraColumns, "Caught"];
+  allColumns.forEach(h => {
     const th = document.createElement("th");
     th.textContent = h;
     header.appendChild(th);
   });
   table.appendChild(header);
 
+  // build rows
   creatures.forEach(creature => {
     const row = document.createElement("tr");
-
     if (caughtMap[creature.id]) row.style.opacity = "0.5";
 
     const icon = document.createElement("td");
@@ -214,10 +218,13 @@ function renderTable(creatures, containerId, extraColumns) {
     const name = document.createElement("td");
     name.textContent = creature.name;
 
-    const location = document.createElement("td");
-    location.textContent = creature.location;
+    row.append(icon, name);
 
-    row.append(icon, name, location);
+    if (includeLocation) {
+      const location = document.createElement("td");
+      location.textContent = creature.location;
+      row.appendChild(location);
+    }
 
     extraColumns.forEach(col => {
       const td = document.createElement("td");
@@ -244,6 +251,7 @@ function renderTable(creatures, containerId, extraColumns) {
 
   container.appendChild(table);
 }
+
 
 
 /*************************************************
@@ -275,8 +283,9 @@ applyBugFiltersBtn.addEventListener("click", () => {
 applySeaCreatureFiltersBtn.addEventListener("click", () => {
   const filters = getCommonFilters("seaCreatureCountInput");
   const results = filterCreatures(creatures.seaCreatures, filters, true);
-  renderTable(results, "seaCreatureResults", ["Shadow Size", "Shadow Speed"]);
+  renderTable(results, "seaCreatureResults", ["Shadow Size", "Shadow Speed"], false); // last "false" disables Location
 });
+
 
 
 /*************************************************
