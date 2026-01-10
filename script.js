@@ -254,7 +254,6 @@ function renderTable(creatures, containerId, extraColumns, includeLocation = tru
 
 
 
-
 /*************************************************
  * 6. RUN ASSISTANTS
  *************************************************/
@@ -324,4 +323,3 @@ function renderCritterpedia() {
   });
   
 }
-
